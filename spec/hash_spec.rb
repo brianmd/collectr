@@ -63,7 +63,7 @@ shared_examples 'a hash' do
   # end
 end
 
-if Redis.current
+if redis_exists?
   describe Collectr::RedisHash do
     it_behaves_like 'a hash'
   end
