@@ -1,6 +1,10 @@
+[![Build Status](https://api.travis-ci.org/brianmd/collectr.png?branch=master)](https://travis-ci.org/brianmd/collectr)  [![Gem Version](https://badge.fury.io/rb/collectr.png)](http://badge.fury.io/rb/collectr)  [![Coverage Status](https://coveralls.io/repos/brianmd/collectr/badge.png)](https://coveralls.io/r/brianmd/collectr)
+
 # Collectr
 
-TODO: Write a gem description
+Abstraction for thread-safe collections (array, hash, set, bag).
+
+Once it is fleshed out, will include complete abstractions for redis and memory.
 
 ## Installation
 

@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Collectr::VERSION
   spec.authors       = ["Brian Murphy-Dye"]
   spec.email         = ["brian@murphydye.com"]
-  spec.summary       = %q{Abstraction thread-safe collections (array, hash, set, bag).}
+  spec.summary       = %q{Abstraction for thread-safe collections (array, hash, set, bag).}
   spec.description   = %q{}
   spec.homepage      = ""
   spec.license       = "MIT"
