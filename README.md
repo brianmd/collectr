@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/brianmd/collectr.png?branch=master)](https://travis-ci.org/brianmd/collectr)  [![Coverage Status](https://coveralls.io/repos/brianmd/collectr/badge.png?branch=master&service=github)](https://coveralls.io/github/brianmd/collectr?branch=master)
+[![Build Status](https://api.travis-ci.org/brianmd/collectr.png?branch=master)](https://travis-ci.org/brianmd/collectr)  [![Gem Version](https://badge.fury.io/rb/collectr.png)](http://badge.fury.io/rb/collectr)  [![Coverage Status](https://coveralls.io/repos/brianmd/collectr/badge.png?branch=master&service=github)](https://coveralls.io/github/brianmd/collectr?branch=master)
 # Collectr
 
 Abstraction for thread-safe collections (array, hash, set, bag).
