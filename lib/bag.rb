@@ -46,9 +46,12 @@ class Bag
   end
 
   def as_sorted_counts
-    @bag.sort_by{ |key, cnt| cnt }
+    @bag.sort_by{ |key, cnt| -cnt }
   end
 
+  private
+  
+  # for cloning
   def initialize_copy(source)
     @bag = source.bag.clone
     super
