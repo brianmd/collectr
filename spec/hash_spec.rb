@@ -17,7 +17,10 @@ shared_examples 'a hash' do
     context 'after an item is added' do
       before { collection.clear ; collection[1] = 'a1' }
       it { expect(collection.size).to eq(1) }
+      it { expect(collection.key?(1)).to be true }
+      it { expect(collection.has_key?(1)).to be true }
       it { expect(collection[1]).to eq('a1') }
+      it { collection.delete(1); expect(collection.size).to eq(0) }
     end
 
     context 'after multiple items are added' do
