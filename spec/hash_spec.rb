@@ -1,8 +1,8 @@
 require 'json'
 require 'spec_helper'
 
-require 'redis/redis_hash.rb'
-require 'memory/memory_hash.rb'
+#require 'redis/redis_hash.rb'
+#require 'redis/redis_hash_expiry.rb'
 
 shared_examples 'a hash' do
   context 'when keys and/or values may be other than strings' do
@@ -27,7 +27,7 @@ shared_examples 'a hash' do
       before { collection.clear ; collection[1] = 'aa1' ; collection['b2'] = nil ; collection[[1,2]] = 3 }
 
       its(:size) { should eq(3) }
-      its(:keys) { should eq([1, 'b2', [1,2]]) }
+      it { expect(collection.keys.to_set).to eq([1, 'b2', [1,2]].to_set) }
       its(:to_hash) { should eq({1=>'aa1', 'b2'=>nil, [1,2]=>3}) }
       it { expect(collection.fetch(1)).to eq('aa1') }
       it { expect(collection.fetch('b2')).to eq(nil) }
@@ -43,10 +43,8 @@ shared_examples 'a hash' do
     before { collection.destroy ; collection['1'] = 'a1' ; collection['b2'] = '2'; collection['[1,2]'] = '3' }
     after { collection.clear }
     its(:size) { should eq(3) }
-    its(:keys) { should eq(['1', 'b2', '[1,2]'])}
     its(:to_hash) { should eq({'1'=>'a1', 'b2'=>'2', '[1,2]'=>'3'}) }
-    # it { expect(collection.size).to eq(3) }
-    it { expect(collection.keys).to eq(['1', 'b2', '[1,2]'])}
+    it { expect(collection.keys.to_set).to eq(['1', 'b2', '[1,2]'].to_set)}
     it { expect(collection.to_hash).to eq({'1'=>'a1', 'b2'=>'2', '[1,2]'=>'3'}) }
   end
 
@@ -66,14 +64,15 @@ shared_examples 'a hash' do
   # end
 end
 
-if redis_exists?
+if redis_exists? and false
   describe Collectr::RedisHash do
+    it_behaves_like 'a hash'
+  end
+
+  describe Collectr::RedisHashExpiry do
     it_behaves_like 'a hash'
   end
 end
 
 # warn Redis.current.flushall
 
-describe Collectr::MemoryHash do
-  it_behaves_like 'a hash'
-end
