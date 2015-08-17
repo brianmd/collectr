@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'bag'
+require 'collectr/bag'
 
 describe Collectr::Bag do
   subject(:bag) { Bag.new }

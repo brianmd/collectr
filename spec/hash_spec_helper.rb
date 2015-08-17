@@ -1,9 +1,6 @@
 require 'json'
 require 'spec_helper'
 
-#require 'redis/redis_hash.rb'
-#require 'redis/redis_hash_expiry.rb'
-
 shared_examples 'a hash' do
   context 'when keys and/or values may be other than strings' do
     subject(:collection) { described_class.new 'example' }

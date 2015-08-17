@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-require 'redis/redis_array'
+require 'collectr/redis/redis_array'
 
 if redis_exists?
   describe Collectr::RedisArray do

@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'redis/redis_hash_expiry'
-require 'hash_spec'
+require 'collectr/redis/redis_hash_expiry'
+require 'hash_spec_helper'
 
 if redis_exists?
 	describe Collectr::RedisHashExpiry do

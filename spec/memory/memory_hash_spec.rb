@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'memory/memory_hash.rb'
-require 'hash_spec'
+require 'collectr/memory/memory_hash.rb'
+require 'hash_spec_helper'
 
 describe Collectr::MemoryHash do
   it_behaves_like 'a hash'
