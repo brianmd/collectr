@@ -1,4 +1,4 @@
-module Collection
+module Collectr
   class NullHash
     attr_reader :store
 
