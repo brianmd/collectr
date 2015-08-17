@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'bag'
 
-describe Bag do
+describe Collectr::Bag do
   subject(:bag) { Bag.new }
 
   it 'handles empty bag' do
