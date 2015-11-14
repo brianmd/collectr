@@ -1,4 +1,3 @@
-require 'redis'
 require 'json'
 
 require_relative 'redis_base'
@@ -46,7 +45,6 @@ module Collectr
     end
 
     def fetch(key, options={})
-      expiration = options.fetch(:expires_in) { @default_expires_in }
       result = self[key]
       if result.nil?
         return nil if has_key?(key)
@@ -92,6 +90,10 @@ module Collectr
 
     def keys
       @store.keys(key_prefix).collect{ |key| dekey key }
+    end
+
+    def values
+      keys.collect{ |key| self[key] }
     end
 
     def to_hash

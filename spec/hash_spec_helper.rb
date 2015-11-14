@@ -25,6 +25,7 @@ shared_examples 'a hash' do
 
       its(:size) { should eq(3) }
       it { expect(collection.keys.to_set).to eq([1, 'b2', [1,2]].to_set) }
+      it { expect(collection.values.to_set).to eq(["aa1", nil, 3].to_set) }
       its(:to_hash) { should eq({1=>'aa1', 'b2'=>nil, [1,2]=>3}) }
       it { expect(collection.fetch(1)).to eq('aa1') }
       it { expect(collection.fetch('b2')).to eq(nil) }

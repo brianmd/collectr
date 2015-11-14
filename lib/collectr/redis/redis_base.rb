@@ -1,3 +1,5 @@
+require 'redis'
+
 module Collectr
   class RedisBase
     def serialize(val)

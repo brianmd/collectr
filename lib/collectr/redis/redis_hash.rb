@@ -1,24 +1,6 @@
-require 'redis'
 require 'json'
 
 require_relative 'redis_base'
-
-# __FILE__.has_spec 'common/spec/classes/collection/hash_spec'
-
-
-# class Redis
-#   def fetch(key, options={})
-#     val = self[key]
-#     if val.nil?
-#       begin
-#         val = yield key
-#         self[key] = val
-#       end
-#     end
-#     val
-#   end
-# end
-
 
 module Collectr
   class RedisHash < RedisBase
@@ -89,6 +71,10 @@ module Collectr
 
     def keys
       @store.hkeys(@title).collect{ |key| deserialize key }
+    end
+
+    def values
+      keys.collect{ |key| self[key] }
     end
 
     def to_hash

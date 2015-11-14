@@ -1,4 +1,3 @@
-require 'redis'
 require 'json'
 
 require_relative 'redis_base'

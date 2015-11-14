@@ -51,6 +51,10 @@ module Collectr
       @store.keys
     end
 
+    def values
+      @store.values
+    end
+
     def to_hash
       @store  #.copy
     end

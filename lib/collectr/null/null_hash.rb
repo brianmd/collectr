@@ -38,6 +38,10 @@ module Collectr
       []
     end
 
+    def values
+      Set.new
+    end
+
     def to_hash
       {}
     end
