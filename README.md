@@ -25,6 +25,7 @@ Or install it yourself as:
 ```ruby
 require 'collectr/redis/redis_hash'
 x = Collectr::RedisHash.new('example')
+x.clear  # in case 'example' hash was stored previously
 x[3] = 7
 x[3]
   => 7
@@ -32,6 +33,12 @@ x.fetch(3) { 88 }
   => 7
 x.fetch(:not_found) { 88 }
   => 88
+x[:not_found]   # fetch doesn't store default
+  => nil
+x.cache(:not_found) { 99 }
+  => 99
+x[:not_found]   # cache does store default
+  => 99
 ```
 
 ```ruby
