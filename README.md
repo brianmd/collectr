@@ -1,10 +1,8 @@
-[![Build Status](https://api.travis-ci.org/brianmd/collectr.png?branch=master)](https://travis-ci.org/brianmd/collectr)  [![Gem Version](https://badge.fury.io/rb/collectr.png)](http://badge.fury.io/rb/collectr)  [![Coverage Status](https://coveralls.io/repos/brianmd/collectr/badge.png?branch=master&service=github)](https://coveralls.io/github/brianmd/collectr?branch=master)
+[![Build Status](https://api.travis-ci.org/brianmd/collectr.png?branch=master)](https://travis-ci.org/brianmd/collectr)  [![Gem Version](https://badge.fury.io/rb/collectr.png)](http://badge.fury.io/rb/collectr)  [![Coverage Status](https://coveralls.io/repos/brianmd/collectr/badge.svg?branch=master&service=github)](https://coveralls.io/github/brianmd/collectr?branch=master)
 
 # Collectr
 
 Abstraction for thread-safe collections (array, hash, set, bag).
-
-Once it is fleshed out, will include complete abstractions for redis and memory.
 
 ## Installation
 
@@ -16,7 +14,7 @@ gem 'collectr'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -24,7 +22,48 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'collectr/redis/redis_hash'
+x = Collectr::RedisHash.new('example')
+x[3] = 7
+x[3]
+  => 7
+x.fetch(3) { 88 }
+  => 7
+x.fetch(:not_found) { 88 }
+  => 88
+```
+
+```ruby
+require 'collectr/redis/redis_hash_expiry'
+x = Collectr::RedisHashExpiry.new('example', expires_in: 60)
+x['purple'] = :blue
+x['purple']
+  => "blue"
+sleep 61
+x['purple']
+  => nil
+x.write('nine', 9, expires_in: 2)
+x['nine']
+```
+
+```ruby
+require 'collectr/memory/memory_hash'
+x = Collectr::MemoryHash.new('example')
+x[:a] = 'abc'
+x[:a]
+  => "abc"
+```
+
+```ruby
+require 'collectr/redis/redis_array'
+array = Collectr::RedisArray.new('arr', max_size: 3)
+array.clear
+array << 'a'
+array << 'b'
+array.to_a
+  => ["a", "b"]
+```
 
 ## Contributing
 

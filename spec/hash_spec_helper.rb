@@ -1,6 +1,10 @@
 require 'json'
 require 'spec_helper'
 
+if redis_exists?
+  warn Redis.current.flushall
+end
+
 shared_examples 'a hash' do
   context 'when keys and/or values may be other than strings' do
     subject(:collection) { described_class.new 'example' }
@@ -56,21 +60,5 @@ shared_examples 'a hash' do
     # it 'string key is distinct from symbol key' do expect(collection.fetch('x')).to eq(7) end
     it 'new value is retained' do collection['x'] = 9 ; expect(collection.fetch('x')).to eq(9) end
   end
-
-  # context 'when expires' do
-  #   it 'expires on time'
-  # end
 end
-
-if redis_exists? and false
-  describe Collectr::RedisHash do
-    it_behaves_like 'a hash'
-  end
-
-  describe Collectr::RedisHashExpiry do
-    it_behaves_like 'a hash'
-  end
-end
-
-# warn Redis.current.flushall
 
